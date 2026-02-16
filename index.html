@@ -14,16 +14,29 @@
 
         h1 {
             padding: 20px;
-            font-size: 28px;
+        }
+
+        #search {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .card {
             background: #1f1f1f;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 15px;
+            padding: 15px;
             border-radius: 20px;
-            width: 90%;
-            max-width: 400px;
+            width: 280px;
             box-shadow: 0 0 20px rgba(255, 0, 150, 0.3);
             transition: 0.3s;
         }
@@ -40,17 +53,12 @@
 
         .download-btn {
             display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
+            margin-top: 10px;
+            padding: 8px 15px;
             background: #ff0080;
             color: white;
             text-decoration: none;
             border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .download-btn:hover {
-            background: #ff4da6;
         }
 
         footer {
@@ -64,16 +72,35 @@
 
 <h1>🔥 Anime Addon Storage 🔥</h1>
 
-<div class="card">
-    <h2>Zero Two Addon</h2>
-    <img src="zero.jpg" alt="Zero Two">
-    <br>
-    <a class="download-btn" href="zero.mcaddon">⬇ Download Addon</a>
+<input type="text" id="search" placeholder="🔍 Tìm addon..." onkeyup="searchAddon()">
+
+<div class="container" id="addonList">
+
+    <div class="card">
+        <h2>Zero Two Addon</h2>
+        <img src="zero.jpg">
+        <a class="download-btn" href="zero.mcaddon">⬇ Download</a>
+    </div>
+
+    <!-- Thêm addon mới bên dưới -->
+
 </div>
 
 <footer>
     © 2026 Anime Addon Storage
 </footer>
+
+<script>
+function searchAddon() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName("h2")[0].innerText.toLowerCase();
+        cards[i].style.display = title.includes(input) ? "block" : "none";
+    }
+}
+</script>
 
 </body>
 </html>
